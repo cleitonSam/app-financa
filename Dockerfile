@@ -1,17 +1,19 @@
-# Financeiro do Casal — imagem estática (PWA) para EasyPanel / Docker
-FROM nginx:alpine
+# Financeiro do Casal — imagem ÚNICA: PWA (nginx) + API (Node) no mesmo container.
+# O nginx serve os arquivos na porta 80 e faz proxy de /api -> Node (127.0.0.1:8787).
+# Assim o app conecta no backend pela mesma origem (sem CORS) usando as variáveis
+# de ambiente do EasyPanel (DATABASE_URL, JWT_SECRET, OPENROUTER_API_KEY, etc.).
+FROM node:20-alpine
 
-# Adiciona o MIME do manifest do PWA sem sobrescrever os demais tipos
-RUN sed -i 's#^types {#types {\n    application/manifest+json webmanifest;#' /etc/nginx/mime.types
+# nginx + utilitários
+RUN apk add --no-cache nginx wget && mkdir -p /run/nginx
 
-# Config do site dentro do container
-COPY default.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Arquivos do app
-COPY index.html manifest.webmanifest sw.js *.png /usr/share/nginx/html/
+# 1) Dependências do backend primeiro (melhor cache de build)
+COPY server/package.json ./
+RUN npm install --omit=dev
 
-EXPOSE 80
+# 2) Código do backend
+COPY server/ ./
 
-# Healthcheck simples (opcional, o EasyPanel mostra o status)
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget -qO- http://localhost/ >/dev/null 2>&1 || exit 1
+# 3
