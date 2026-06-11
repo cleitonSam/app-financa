@@ -1,0 +1,10 @@
+# Mantém a imagem enxuta — nada disso precisa ir pro container
+DEPLOY.md
+DEPLOY-EASYPANEL.md
+nginx.conf
+docker-compose.yml
+financeiro-casal.html
+*.json.bak
+.git
+.gitignore
+*.md

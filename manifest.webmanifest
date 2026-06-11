@@ -1,0 +1,25 @@
+{
+  "name": "Financeiro do Casal",
+  "short_name": "Casal $",
+  "id": "/financeiro-casal/",
+  "description": "Controle financeiro para casais — conta conjunta, metas, cartões e despesas.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f7f5",
+  "theme_color": "#1c1c1a",
+  "lang": "pt-BR",
+  "categories": ["finance", "productivity"],
+  "shortcuts": [
+    { "name": "Novo lançamento", "short_name": "Lançar", "url": "./index.html?go=lanc", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Afazeres de casa", "short_name": "Afazeres", "url": "./index.html?go=afazeres", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Alertas", "short_name": "Alertas", "url": "./index.html?go=alertas", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

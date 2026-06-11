@@ -1,0 +1,9 @@
+services:
+  financeiro:
+    build: .
+    image: financeiro-casal
+    container_name: financeiro-casal
+    restart: unless-stopped
+    ports:
+      - "8080:80"      # acesse em http://IP-DA-VPS:8080  (coloque um proxy/HTTPS na frente)
+    # Se você já usa Traefik/Nginx Proxy Manager, troque "ports" por labels/rede do seu proxy.

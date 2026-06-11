@@ -1,0 +1,21 @@
+{
+  "name": "financeiro-casal-api",
+  "version": "1.0.0",
+  "description": "Backend do Financeiro do Casal — login por convite e sincronização do casal.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.5",
+    "web-push": "^3.6.7"
+  }
+}

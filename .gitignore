@@ -1,0 +1,20 @@
+# Backups e dados locais
+*.json.bak
+backup-financeiro-casal.json
+
+# Versão antiga (substituída por index.html)
+financeiro-casal.html
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node (caso use algo no futuro)
+node_modules/
+npm-debug.log*
