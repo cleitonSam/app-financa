@@ -7,3 +7,15 @@ services:
     ports:
       - "8080:80"      # acesse em http://IP-DA-VPS:8080  (coloque um proxy/HTTPS na frente)
     # Se você já usa Traefik/Nginx Proxy Manager, troque "ports" por labels/rede do seu proxy.
+    environment:
+      # Banco (obrigatório). No EasyPanel isto vai na aba Environment do serviço.
+      DATABASE_URL: "postgres://postgress:202020@76.13.76.214:5432/dash-banco?sslmode=disable"
+      # Segredo das sessões (gere um e mantenha fixo p/ não deslogar a cada deploy):
+      #   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+      JWT_SECRET: "troque-por-um-segredo-aleatorio-longo"
+      # Schema isolado (não toca no resto do banco)
+      DB_SCHEMA: "financeiro_casal"
+      # IA (opcional) — sem isso o app funciona, só o conselheiro fica desligado
+      # OPENROUTER_API_KEY: "sk-or-v1-..."
+      # Notificações push (opcional; se vazio, o servidor gera as chaves sozinho)
+      # VAPID_SUBJECT: "mailto:voce@seudominio.com"

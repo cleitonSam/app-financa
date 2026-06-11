@@ -8,3 +8,9 @@ financeiro-casal.html
 .git
 .gitignore
 *.md
+
+# Backend: nunca levar node_modules nem segredos para o build
+server/node_modules
+server/.env
+**/.env
+**/*.log

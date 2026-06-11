@@ -16,4 +16,23 @@ RUN npm install --omit=dev
 # 2) Código do backend
 COPY server/ ./
 
-# 3
+# 3) Frontend estático (PWA)
+COPY index.html manifest.webmanifest sw.js *.png /usr/share/nginx/html/
+
+# 4) Config do nginx (inclui o proxy /api) + MIME do manifest
+RUN sed -i 's#^\s*types {#types {\n    application/manifest+json webmanifest;#' /etc/nginx/mime.types || true
+COPY default.conf /etc/nginx/http.d/default.conf
+
+# 5) Inicia Node + nginx juntos
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+ENV NODE_ENV=production
+ENV PORT=8787
+EXPOSE 80
+
+# Saudável só quando a API responde através do nginx
+HEALTHCHECK --interval=30s --timeout=4s --start-period=20s \
+  CMD wget -qO- http://localhost/api/health >/dev/null 2>&1 || exit 1
+
+CMD ["/docker-entrypoint.sh"]
