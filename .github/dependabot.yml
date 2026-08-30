@@ -1,5 +1,5 @@
 # Atualizacoes de dependencias automaticas, agrupadas em 1 PR por semana.
-# Reduz ruido: em vez de um PR por pacote, junta tudo por ecossistema.
+# Reduz ruido: agrupa por ecossistema e ignora saltos major (revisar a mao).
 version: 2
 updates:
   - package-ecosystem: npm
@@ -19,6 +19,9 @@ updates:
       desenvolvimento:
         dependency-type: development
         update-types: [minor, patch]
+    ignore:
+      - dependency-name: '*'
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
